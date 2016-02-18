@@ -150,6 +150,8 @@ eula() {
     #pkill ts3server_linux_$ARCHITECTURE
     xmlstarlet ed -L -u " /config/services/teamspeak3/password" -v $TEST ${OMV_CONFIG_FILE}
     xmlstarlet ed -L -u " /config/services/teamspeak3/eula" -v "1" ${OMV_CONFIG_FILE}
+    unzip /usr/share/ts3wi.zip -d /usr/share  && rm -f /usr/share/ts3wi.zip
+    chown -R www-data:www-data /usr/share/ts3wi
 }
 
 update() {
