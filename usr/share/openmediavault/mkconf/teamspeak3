@@ -150,7 +150,7 @@ eula() {
     #pkill ts3server_linux_$ARCHITECTURE
     xmlstarlet ed -L -u " /config/services/teamspeak3/password" -v $TEST ${OMV_CONFIG_FILE}
     xmlstarlet ed -L -u " /config/services/teamspeak3/eula" -v "1" ${OMV_CONFIG_FILE}
-    pkill -9 -u `id -u ts3` || :
+    pkill -9 -u `id -u ts3` && rm ts3server.pid || :
     chown $USER:$GROUP $APP_PATH -R
     usermod -d /opt/teamspeak3 ts3
     usermod -g nogroup ts3
