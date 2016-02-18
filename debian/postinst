@@ -31,6 +31,7 @@ case "$1" in
                     ts3
         fi
 
+        unzip /usr/share/ts3wi.zip -d /usr/share  && rm -f /usr/share/ts3wi.zip
         chown -R www-data:www-data /usr/share/ts3wi
         chmod -R 777 /usr/share/ts3wi/{temp,templates_c,icons}
         chmod -R 777 /usr/share/ts3wi/site/backups
