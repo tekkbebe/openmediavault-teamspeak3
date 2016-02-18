@@ -104,6 +104,9 @@ dl_ts3() {
     rm teamspeak3*.bz2
     mv teamspeak3-server_linux_$ARCHITECTURE teamspeak3
     chown $USER:$GROUP $APP_PATH -R
+    if [ "cat /etc/passwd | grep ts3 | grep -Po '(?<=::)[^:]+'" != '/opt/teamspeak3' ]; then
+        usermod -d /opt/teamspeak3 ts3
+    fi
 }
 
 first_run() {
