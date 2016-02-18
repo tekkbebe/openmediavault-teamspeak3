@@ -31,11 +31,11 @@ case "$1" in
                     ts3
         fi
 
-        unzip /usr/share/ts3wi.zip -d /usr/share  && rm -f /usr/share/ts3wi.zip
-        chown -R www-data:www-data /usr/share/ts3wi
-        find /usr/share/ts3wi \( -type f -exec chmod 644 {} \; \) , \( -type d -exec chmod 755 {} \; \)
-        chmod -R 777 /usr/share/ts3wi/{temp,templates_c,icons}
-        chmod -R 777 /usr/share/ts3wi/site/backups
+        #unzip /usr/share/ts3wi.zip -d /usr/share  && rm -f /usr/share/ts3wi.zip
+        #chown -R www-data:www-data /usr/share/ts3wi
+        #find /usr/share/ts3wi \( -type f -exec chmod 644 {} \; \) , \( -type d -exec chmod 755 {} \; \)
+        #chmod -R 777 /usr/share/ts3wi/{temp,templates_c,icons}
+        #chmod -R 777 /usr/share/ts3wi/site/backups
 
         if ! omv_config_exists "${SERVICE_XPATH}"; then
             omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
