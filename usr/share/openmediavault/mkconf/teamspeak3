@@ -104,9 +104,9 @@ dl_ts3() {
     rm teamspeak3*.bz2
     mv teamspeak3-server_linux_$ARCHITECTURE teamspeak3
     chown $USER:$GROUP $APP_PATH -R
-    if [ "cat /etc/passwd | grep ts3 | grep -Po '(?<=::)[^:]+'" != '/opt/teamspeak3' ]; then
-        usermod -d /opt/teamspeak3 ts3
-    fi
+    #if [ "cat /etc/passwd | grep ts3 | grep -Po '(?<=::)[^:]+'" != '/opt/teamspeak3' ]; then
+    #    usermod -d /opt/teamspeak3 ts3
+    #fi
 }
 
 first_run() {
@@ -146,11 +146,14 @@ eula() {
             break
         fi
     done
-    kill $(ps aux | grep '[t]s3server_linux_' | awk '{print $2}')
+    #kill $(ps aux | grep '[t]s3server_linux_' | awk '{print $2}')
     #pkill ts3server_linux_$ARCHITECTURE
     xmlstarlet ed -L -u " /config/services/teamspeak3/password" -v $TEST ${OMV_CONFIG_FILE}
     xmlstarlet ed -L -u " /config/services/teamspeak3/eula" -v "1" ${OMV_CONFIG_FILE}
+    pkill -9 -u `id -u ts3` || :
     chown $USER:$GROUP $APP_PATH -R
+    usermod -d /opt/teamspeak3 ts3
+    usermod -g nogroup ts3
 }
 
 update() {
